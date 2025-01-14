@@ -23,7 +23,7 @@ on:
 jobs:
   pre-prod:
     if: inputs.environment == 'pre-prod'
-    environment: pre-prod
+    environment: pre-prod #Without this the action register-deployed-artifact would not work
     steps:
       - name: Inform system that an artifact version was deployed
         uses: cloudbees-io/register-deployed-artifact@v1
@@ -33,7 +33,7 @@ jobs:
           url: "docker.io/MyApp/${{ inputs.artifactName }}:${{ inputs.artifactVersion }}"
   prod:
     if: inputs.environment == 'prod'
-    environment: prod
+    environment: prod #Without this the action register-deployed-artifact would not work
     steps:
       - name: Inform system that an artifact version was deployed
         uses: cloudbees-io/register-deployed-artifact@v1
